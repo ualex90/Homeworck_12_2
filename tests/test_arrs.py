@@ -19,11 +19,15 @@ def test_slice(coll, start, end, expected):
     assert arrs.my_slice(coll, start, end) == expected
 
 
-def test_get_val():
-    data = {"vcs": "mercurial"}
-    assert dicts.get_val(data, "vcs") == 'mercurial'
-    assert dicts.get_val(data, "vcs", "git") == 'mercurial'
-    assert dicts.get_val(data, "python", "git") == 'git'
+@pytest.fixture
+def coll():  # словарь
+    return {"vcs": "mercurial"}
+
+
+def test_get_val(coll):
+    assert dicts.get_val(coll, "vcs") == 'mercurial'
+    assert dicts.get_val(coll, "vcs", "git") == 'mercurial'
+    assert dicts.get_val(coll, "python", "git") == 'git'
     data = {}
     assert dicts.get_val(data, "python", "bazaar") == 'bazaar'
 
