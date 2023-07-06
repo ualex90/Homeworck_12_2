@@ -1,4 +1,4 @@
-from utils import arrs
+from utils import arrs, dicts
 
 
 def test_get():
@@ -12,6 +12,16 @@ def test_slice():
     assert arrs.my_slice([1, 2, 3], -2) == [2, 3]
     assert arrs.my_slice([1, 2, 3], -5) == [1, 2, 3]
     assert arrs.my_slice([], 0) == []
+
+
+def test_get_val():
+    data = {"vcs": "mercurial"}
+    assert dicts.get_val(data, "vcs") == 'mercurial'
+    assert dicts.get_val(data, "vcs", "git") == 'mercurial'
+    assert dicts.get_val(data, "python", "git") == 'git'
+    data = {}
+    assert dicts.get_val(data, "python", "bazaar") == 'bazaar'
+
 
 # import unittest
 # from utils import arrs
